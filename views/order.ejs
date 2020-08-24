@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <%- include("partials/bootstrap.ejs") %>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="text/javascript" src="/javascript/cart.js"></script>
+  <title>Menu</title>
+</head>
+
+<body>
+  <div style="background-color: black;">
+    <%- include("partials/header.ejs", {loggedIn: loggedIn}) %>
+  </div>
+
+  <div class="marble-background">
+    <div class="container">
+      <div class="order-flex">
+        <% for(i = 0; i < rows.length; i++){%>
+        <%- include("components/order-item.ejs", {item: rows[i]}) %>
+        <%}%>
+      </div>
+
+      <div class="container" id="cart" style="text-align: center">
+        <h3 style="text-align: center;">cart</h3>
+        <div class="cart-card" id="cart-display">
+
+
+        </div>
+
+        <form class="" action="/makeOrder" id="orderForm" method="post">
+          <button type="button" class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+          <input type="submit" name="submit" value="Order" id="submit" class="btn btn-success" disabled>
+          <input type="hidden" id="orderDetails" name="orderDetails" value="..."/>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <%- include("partials/footer.ejs") %>
+</body>
+
+</html>

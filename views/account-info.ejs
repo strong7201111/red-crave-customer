@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <%- include("partials/bootstrap.ejs") %>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Menu</title>
+  </head>
+
+  <body>
+    <div style="background-color: black;">
+      <%- include("partials/header.ejs", {loggedIn: loggedIn}) %>
+    </div>
+
+    <div class="marble-background">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h3 style="font-size: 2rem;">my account</h3>
+            <div class="list-group">
+              <a
+                href="/profile/account-info"
+                class="list-group-item list-group-item-action active"
+                >Account Info</a
+              >
+              <a
+                href="/profile/my-orders"
+                class="list-group-item list-group-item-action"
+                >My Orders</a
+              >
+            </div>
+            <form
+              class=""
+              action="/logout"
+              method="post"
+              style="margin: 1rem 0;"
+            >
+              <input
+                type="submit"
+                name=""
+                value="Log Out"
+                class="btn btn-danger"
+              />
+            </form>
+          </div>
+
+          <div class="col-md-9" style="margin-bottom: 1rem;">
+            <h3 style="font-size: 2rem;">account info</h3>
+
+            <div class="tab">
+              <button
+                class="tablinks"
+                onclick="openCity(event, 'Personal-Info')"
+                id="defaultOpen"
+              >
+                Personal Info
+              </button>
+              <button class="tablinks" onclick="openCity(event, 'Address')">
+                Address
+              </button>
+            </div>
+
+            <div id="Personal-Info" class="tabcontent">
+              <div
+                class="card"
+                style="background-color: rgba(255, 255, 255, 0.3);"
+              >
+                <div class="card-body">
+                  <form class="" action="/updateUser" method="post">
+                    <div class="form-group">
+                      <label>First Name</label>
+                      <input
+                        type="text"
+                        name="fname"
+                        class="form-control"
+                        aria-describedby="emailHelp"
+                        placeholder="First Name"
+                        value="<%= user.F_NAME %>"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Last Name</label>
+                      <input
+                        type="text"
+                        name="lname"
+                        class="form-control"
+                        aria-describedby="emailHelp"
+                        placeholder="Last Name"
+                        value="<%= user.L_NAME %>"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Phone Number</label>
+                      <input
+                        type="text"
+                        name="phone"
+                        class="form-control"
+                        aria-describedby="emailHelp"
+                        placeholder="Phone Number"
+                        value="<%= user.PHONE_NUMBER %>"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Email address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        aria-describedby="emailHelp"
+                        placeholder="Enter email"
+                        value="<%= user.EMAIL %>"
+                        required
+                      />
+                    </div>
+                    <input
+                      type="submit"
+                      name="submit"
+                      value="Update"
+                      class="btn btn-success"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div id="Address" class="tabcontent">
+              <div
+                class="card"
+                style="background-color: rgba(255, 255, 255, 0.3);"
+              >
+                <div class="card-body">
+                  <form class="" action="/updateUserAddress" method="post">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input
+                        type="text"
+                        name="city"
+                        class="form-control"
+                        placeholder="City"
+                        value="<%= address.CITY %>"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Building</label>
+                      <input
+                        type="text"
+                        name="building"
+                        class="form-control"
+                        placeholder="Building"
+                        value="<%= address.BUILDING %>"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Road</label>
+                      <input
+                        type="text"
+                        name="road"
+                        class="form-control"
+                        placeholder="Road"
+                        value="<%= address.ROAD %>"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Block</label>
+                      <input
+                        type="text"
+                        name="block"
+                        class="form-control"
+                        placeholder="Block"
+                        value="<%= address.BLOCK %>"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Apartment</label>
+                      <input
+                        type="text"
+                        name="apartment"
+                        class="form-control"
+                        placeholder="Apartment (Not Required)"
+                        value="<%= address.APARTMENT %>"
+                      />
+                    </div>
+                    <input
+                      type="submit"
+                      name="submit"
+                      value="Update"
+                      class="btn btn-success"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("partials/footer.ejs") %>
+
+    <script>
+      document.getElementById("defaultOpen").click();
+
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+  </body>
+</html>

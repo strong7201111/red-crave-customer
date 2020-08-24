@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <%- include("partials/bootstrap.ejs") %>
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Menu</title>
+</head>
+
+<body>
+  <div style="background-color: black;">
+    <%- include("partials/header.ejs", {loggedIn: loggedIn}) %>
+  </div>
+
+  <div class="marble-background">
+    <img style="display: block; margin: 2rem auto; border: 0.3rem solid black" width="80%" src="<%= post.POST_IMG %>" alt="">
+    <div class="container">
+      <h2><%= post.POST_TITLE %></h2>
+      <% post.POST_DATE = post.POST_DATE.toString().substring(0,15) %>
+      <h3><%= post.POST_DATE %></h3>
+      <p><%= post.POST_BODY %></p>
+    </div>
+  </div>
+
+  <%- include("partials/footer.ejs") %>
+</body>
+
+</html>

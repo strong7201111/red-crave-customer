@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <%- include("partials/bootstrap.ejs") %>
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Menu</title>
+  </head>
+
+  <body>
+    <div style="background-color: black;">
+      <%- include("partials/header.ejs", {loggedIn: loggedIn}) %>
+    </div>
+    <div class="marble-background">
+      <div class="container">
+        <h3>welcome <span style="color: #ff5a00;"><%= id %></span></h3>
+        <div class="row">
+          <div class="col-md-3">
+            <h3 style="font-size: 2rem;">my account</h3>
+            <div class="list-group">
+              <a
+                href="/profile/account-info"
+                class="list-group-item list-group-item-action"
+                >Account Info</a
+              >
+              <a
+                href="/profile/my-orders"
+                class="list-group-item list-group-item-action"
+                >My Orders</a
+              >
+            </div>
+            <form
+              class=""
+              action="/logout"
+              method="post"
+              style="margin: 1rem 0;"
+            >
+              <input
+                type="submit"
+                name=""
+                value="Log Out"
+                class="btn btn-danger"
+              />
+            </form>
+          </div>
+
+          <div class="col-md-9">
+            <h3 style="font-size: 2rem;">latest orders</h3>
+
+            <div class="flex-container-orders">
+              <% for(i = 0; i < orders.length; i++){%>
+              <a
+                href="/orderDetails/<%= orders[i].ORDER_ID %>"
+                style="text-decoration: none; color: black;"
+              >
+                <div class="flex-items-orders">
+                  <p>order id: <%= orders[i].ORDER_ID %></p>
+                  <% if(orders[i].STATUS == "SUCCESSFUL"){ %>
+                  <p style="color: #74bd0f;"><%= orders[i].STATUS %></p>
+                  <%}else if(orders[i].STATUS == "PENDING"){%>
+                  <p style="color: #ffc485;"><%= orders[i].STATUS %></p>
+                  <%}else{%>
+                  <p style="color: #ff8585;"><%= orders[i].STATUS %></p>
+                  <%}%>
+                </div>
+              </a>
+              <%}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

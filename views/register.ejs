@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <%- include("partials/bootstrap.ejs") %>
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Register</title>
+</head>
+
+<body>
+  <div style="background-color: black;">
+    <%- include("partials/header.ejs", {loggedIn: loggedIn}) %>
+  </div>
+
+  <div class="marble-background">
+    <div class="container" style="padding-bottom: 40%;">
+      <h1 style="text-align: center">Register</h1>
+      <div class="card" style="width: 80%; max-width: 30rem; margin: 0 auto; background-color: rgba(255, 255, 255, 0.3); ">
+        <div class="card-body">
+          <form class="" action="/register" method="post">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" name="fname" class="form-control" aria-describedby="emailHelp" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" name="lname" class="form-control" aria-describedby="emailHelp" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="text" name="phone" class="form-control" aria-describedby="emailHelp" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <hr>
+            <hr>
+            <h3>Address</h3>
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" name="city" class="form-control" placeholder="City" required>
+            </div>
+            <div class="form-group">
+              <label>Building</label>
+              <input type="text" name="building" class="form-control" placeholder="Building" required>
+            </div>
+            <div class="form-group">
+              <label>Road</label>
+              <input type="text" name="road" class="form-control" placeholder="Road" required>
+            </div>
+            <div class="form-group">
+              <label>Block</label>
+              <input type="text" name="block" class="form-control" placeholder="Block" required>
+            </div>
+            <div class="form-group">
+              <label>Apartment</label>
+              <input type="text" name="apartment" class="form-control" placeholder="Apartment (Not Required)">
+            </div>
+            <input type="submit" name="submit" value="Register" class="btn btn-secondary">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("partials/footer.ejs") %>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+<div class="order-item" style="text-align: center">
+  <img src="<%= item.ITEM_IMG %>" alt="Avatar" class="avatar-order">
+  <p id="name<%= item.ITEM_ID %>"><%= item.ITEM_NAME %></p>
+  <p>Price: <span id="price<%= item.ITEM_ID %>"><%= item.PRICE %></span> BD</p>
+  <input style="width: 3rem; height: 2.3rem;" type="number" name="" value="0" id="<%= item.ITEM_ID %>">
+  <button type="button" name="button" class="btn btn-secondary" onclick="addToCart('<%= item.ITEM_ID %>')">Add to Cart</button>
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <%- include("partials/bootstrap.ejs") %>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Menu</title>
+  </head>
+
+  <body>
+    <div style="background-color: black;">
+      <%- include("partials/header.ejs", {loggedIn: loggedIn}) %>
+    </div>
+
+    <div class="marble-background" style="">
+      <div
+        style="
+          background-color: rgba(255, 255, 255, 0.7);
+          padding: 1rem;
+          border-radius: 1rem;
+          width: 95%;
+          max-width: 40rem;
+          margin: 0 auto;
+          text-align: center;
+        "
+      >
+        <h3>Order ID: <%= orderDetails[0].ORDER_ID %></h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Item</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Full Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%let total = 0;%> <% for(i = 0; i < orderDetails.length; i++){%>
+            <tr>
+              <th scope="row"><%= i %></th>
+              <td><%= orderDetails[i].ITEM_NAME %></td>
+              <td>x<%= orderDetails[i].QUANTITY %></td>
+              <td><%= orderDetails[i].PRICE %> BHD</td>
+              <td>
+                <%= orderDetails[i].PRICE * orderDetails[i].QUANTITY %> BHD
+              </td>
+              <%total = total + (orderDetails[i].PRICE *
+              orderDetails[i].QUANTITY)%>
+            </tr>
+            <%}%>
+          </tbody>
+        </table>
+        <hr />
+        <p>total: <%= total.toFixed(3) %> BHD</p>
+      </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>
