@@ -39,7 +39,7 @@ intializePassport(passport);
 app.use(authenticationRoutes);
 app.use(websiteRoutes);
 
-let port = 3000 || process.env.PORT;
+let port = process.env.PORT || 3000;
 
 app.listen(port, ()=>{
   console.log("server running on port 3000");
